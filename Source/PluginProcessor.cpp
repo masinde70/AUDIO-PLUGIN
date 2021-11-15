@@ -189,6 +189,8 @@ juce::AudioProcessorValueTreeState::ParameterLayout
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
     
     layout.add(std::make_unique<juce::AudioParameterFloat>("LowCutFreq", "LowCut Freq", juce::NormalisableRange<float>(20.0f, 20000.f, 1.f, 1.f), 20.f));
+        
+        layout.add(std::make_unique<juce::AudioParameterFloat>("HighCutFreq", "HighCut Freq", juce::NormalisableRange<float>(20.0f, 20000.f, 1.f, 1.f), 20.f));
 }
 
 //==============================================================================
