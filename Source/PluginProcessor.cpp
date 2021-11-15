@@ -198,16 +198,18 @@ juce::AudioProcessorValueTreeState::ParameterLayout
         
     layout.add(std::make_unique<juce::AudioParameterFloat>("Peak Quality", "Peak Quality", juce::NormalisableRange<float>(.1f, 10.f, 0.5f, 1.f), 1.f));
         
-        juce::StringArray stringArray;
-        for(int i = 0; i < 4; ++i){
-            juce::String str;
-            str << (12 + i*12);
-            str << "db/Oct";
-            stringArray.add(str);
-        }
+    juce::StringArray stringArray;
+    for(int i = 0; i < 4; ++i){
+        juce::String str;
+        str << (12 + i*12);
+        str << "db/Oct";
+        stringArray.add(str);
+    }
+    
+        layout.add(std::make_unique<juce::AudioParameterChoice>("LowCut Slope", "LowCut slope", stringArray,0));
+        layout.add(std::make_unique<juce::AudioParameterChoice>("HighCut Slope", "HighCut slope", stringArray,0));
         
-        
-        return layout;
+    return layout;
         
 }
 
