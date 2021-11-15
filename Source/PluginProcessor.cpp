@@ -184,7 +184,7 @@ void SimpleEQAudioProcessor::setStateInformation (const void* data, int sizeInBy
 }
 juce::AudioProcessorValueTreeState::ParameterLayout
 SimpleEQAudioProcessor::createParameterLayout(){
-    
+    juce::AudioProcessorValueTreeState::ParameterLayout layout;
 }
 
 //==============================================================================
