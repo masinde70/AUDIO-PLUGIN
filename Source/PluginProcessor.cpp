@@ -182,12 +182,13 @@ void SimpleEQAudioProcessor::setStateInformation (const void* data, int sizeInBy
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
 }
+
 juce::AudioProcessorValueTreeState::ParameterLayout
-SimpleEQAudioProcessor::createParameterLayout()
+    SimpleEQAudioProcessor::createParameterLayout()
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
     
-    layout.add(std::make_unique<juce::AudioParameterFloat("LowCutFreq", "LowCut Freq", juce::NormalisableRange<float>(20.0f, 20000.f, 1.f, , <#float defaultValue#>));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("LowCutFreq", "LowCut Freq", juce::NormalisableRange<float>(20.0f, 20000.f, 1.f, 1.f), 20.f));
 }
 
 //==============================================================================
