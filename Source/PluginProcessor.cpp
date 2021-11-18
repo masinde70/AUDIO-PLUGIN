@@ -193,13 +193,13 @@ void SimpleEQAudioProcessor::setStateInformation (const void* data, int sizeInBy
 ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts)
 {
     ChainSettings settings;
-    apvts.getRawParameterValue("LowCut Freq")->load();
-    apvts.getRawParameterValue("LowCut Freq")->load();
-    apvts.getRawParameterValue("LowCut Freq")->load();
-    apvts.getRawParameterValue("LowCut Freq")->load();
-    apvts.getRawParameterValue("LowCut Freq")->load();
-    apvts.getRawParameterValue("LowCut Freq")->load();
-    apvts.getRawParameterValue("LowCut Freq")->load();
+    settings.lowCutFreq = apvts.getRawParameterValue("LowCut Freq")->load();
+    settings.highCutFreq = apvts.getRawParameterValue("LowCut Freq")->load();
+    settings.peakFreq= apvts.getRawParameterValue("LowCut Freq")->load();
+    settings.peakGainInDecibels = apvts.getRawParameterValue("LowCut Freq")->load();
+    settings.peakQuality = apvts.getRawParameterValue("LowCut Freq")->load();
+    settings.lowCutSlope = apvts.getRawParameterValue("LowCut Freq")->load();
+    settings.highCutSlope = apvts.getRawParameterValue("LowCut Freq")->load();
     
     return settings;
 }
