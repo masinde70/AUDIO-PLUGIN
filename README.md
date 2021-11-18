@@ -7,4 +7,4 @@
  - Add Spectrum Analyzer
  - Bypass Buttons
  
- 
+ ![](Images/plugin.jpeg)
