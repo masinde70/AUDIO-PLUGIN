@@ -190,6 +190,19 @@ void SimpleEQAudioProcessor::setStateInformation (const void* data, int sizeInBy
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
 }
+ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts)
+{
+    ChainSettings settings;
+    apvts.getRawParameterValue("LowCut Freq")->load();
+    apvts.getRawParameterValue("LowCut Freq")->load();
+    apvts.getRawParameterValue("LowCut Freq")->load();
+    apvts.getRawParameterValue("LowCut Freq")->load();
+    apvts.getRawParameterValue("LowCut Freq")->load();
+    apvts.getRawParameterValue("LowCut Freq")->load();
+    apvts.getRawParameterValue("LowCut Freq")->load();
+    
+    return settings;
+}
 juce::AudioProcessorValueTreeState::ParameterLayout
 SimpleEQAudioProcessor::createParameterLayout()
 {
