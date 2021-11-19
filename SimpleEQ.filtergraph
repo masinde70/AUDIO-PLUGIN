@@ -16,7 +16,7 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="2" x="0.19375" y="0.1115384615384615">
+  <FILTER uid="2" x="0.25" y="0.1">
     <PLUGIN name="MIDI Input" descriptiveName="" format="Internal" category="I/O devices"
             manufacturer="JUCE" version="1.0" file="" uniqueId="a9e4f9eb"
             isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="0"
@@ -61,10 +61,10 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="5" x="0.54" y="0.6230769230769231">
+  <FILTER uid="5" x="0.4775" y="0.5826923076923077">
     <PLUGIN name="SimpleEQ" format="VST3" category="Fx" manufacturer="yourcompany"
             version="1.0.0" file="/Users/masinde/Library/Audio/Plug-Ins/VST3/SimpleEQ.vst3"
-            uniqueId="16dde23" isInstrument="0" fileTime="17d2e13eb23" infoUpdateTime="17d326706e9"
+            uniqueId="16dde23" isInstrument="0" fileTime="17d2e13eb23" infoUpdateTime="17d3740458a"
             numInputs="2" numOutputs="2" isShell="0" uid="acfb3398"/>
     <STATE>191.VMjLgXK....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9XCLt3hKt3hKt3hKt3hYRUUSTEETIckVwTjQisVTTgkdEYjKAQjYPQSPWgUdMcjKAQjct3hdA4hKt3hKt3hKtnTUv.UQAslXuk0UXoWUFE0YQcEV77RRC8Vav8lak4Fc9vyKVMEUy.Ea0cVZtMEcgQWY9..</STATE>
     <LAYOUT>
@@ -76,11 +76,11 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="7" x="0.5" y="0.2865384615384615" uiLastX_Normal="5" uiLastY_Normal="169"
+  <FILTER uid="7" x="0.465" y="0.2423076923076923" uiLastX_Normal="4" uiLastY_Normal="309"
           uiopen_Normal="1">
     <PLUGIN name="AUAudioFilePlayer" format="AudioUnit" category="Generator"
             manufacturer="Apple" version="1.6.0" file="AudioUnit:Generators/augn,afpl,appl"
-            uniqueId="6163676e" isInstrument="0" fileTime="0" infoUpdateTime="17d326706e9"
+            uniqueId="6163676e" isInstrument="0" fileTime="0" infoUpdateTime="17d3740458a"
             numInputs="0" numOutputs="2" isShell="0" uid="6163676e"/>
     <STATE>554.hAGaoMGcv.C1AHv.DTfAGfPBJr.Gc3wGgvUag4VclE1XzUmbkIGUjEFcg8EDarVPUAkbkMWYzAUYxMWZyQWYtQ2TzEFcksTY4c0b0IFc4AWYWYWYxMWZu4FUzkGbk8EDOXVZrUVKxUlYkIWYtMVYyQkag0VYRDFbvwFPgxvzM3vCPDQFXYTZrUlSg0VYWIUYmk1atMmWIM2TkwVYiQWYjYTZrU1WPvyKUMWYxM2KsE1bo4FYk8BQucmar8VXjM2KEM0WDIWXsEFHu4FHCglboMGcsE1bfzBHAUGdpE1Xq4RavMSnRP8DTTgEWfQFZ3kTkcVZu4FQuU1bL81avokTkcVZu4FQgQWXeAADIM2TkwVYiQWYjIUYmk1atokTkcVZu4lSg0VYH7DDvA..............BC.....................XiaTP...........NRb6fXpz4NAEZH2Oc7FbYA....vcuLeO.......................................7f.C...........5qY...vyATBZ4TY2AhTkcVZu4VBRDlYvwFD.HQX0claQCBDVYTZrUFHwfUUtQWZzwVYjA.B.jA.l.vJ.jD.QAPV.3E.vAPc.nG.6APe.PH.MBPk.PJ.iCP4.3N.8G.BArQ.lDvIAnY.aFfoAbZ.rFfqALa.1FPu........BD..........h...................AXL</STATE>
     <LAYOUT>
