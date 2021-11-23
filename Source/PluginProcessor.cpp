@@ -116,6 +116,10 @@ void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
     auto cutCoefficients = juce::dsp::FilterDesign<float>::designIIRHighpassHighOrderButterworthMethod(chainSettings.lowCutFreq,
                                                                                                        sampleRate,
                                                                                                        2 * (chainSettings.lowCutSlope + 1));
+    
+    auto& leftLowCut = leftChain.get<ChainPositions::LowCut>();
+    
+    
 }
 
 void SimpleEQAudioProcessor::releaseResources()
