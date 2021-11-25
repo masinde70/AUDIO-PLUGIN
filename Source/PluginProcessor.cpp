@@ -107,13 +107,6 @@ void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
     auto chainSettings = getChainSettings(apvts);
     
     updatePeakFilter(chainSettings);
-//    auto peakCoeffients = juce::dsp::IIR::Coefficients<float>::makePeakFilter(sampleRate,
-//                                                                              chainSettings.peakFreq,
-//                                                                              chainSettings.peakQuality,
-//                                                                              juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
-//
-//    *leftChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
-//    *rightChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
     
     auto cutCoefficients = juce::dsp::FilterDesign<float>::designIIRHighpassHighOrderButterworthMethod(chainSettings.lowCutFreq,
                                                                                                        sampleRate,
@@ -256,14 +249,6 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     
     auto chainSettings = getChainSettings(apvts);
     updatePeakFilter(chainSettings);
-    
-//    auto peakCoeffients = juce::dsp::IIR::Coefficients<float>::makePeakFilter(getSampleRate(),
-//                                                                              chainSettings.peakFreq,
-//                                                                              chainSettings.peakQuality,
-//                                                                              juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
-//
-//    *leftChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
-//    *rightChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
     
     auto cutCoefficients = juce::dsp::FilterDesign<float>::designIIRHighpassHighOrderButterworthMethod(chainSettings.lowCutFreq,
                                                                                                        getSampleRate(),
