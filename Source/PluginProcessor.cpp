@@ -105,13 +105,15 @@ void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
     rightChain.prepare(spec);
     
     auto chainSettings = getChainSettings(apvts);
-    auto peakCoeffients = juce::dsp::IIR::Coefficients<float>::makePeakFilter(sampleRate,
-                                                                              chainSettings.peakFreq,
-                                                                              chainSettings.peakQuality,
-                                                                              juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
     
-    *leftChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
-    *rightChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
+    updatePeakFilter(chainSettings);
+//    auto peakCoeffients = juce::dsp::IIR::Coefficients<float>::makePeakFilter(sampleRate,
+//                                                                              chainSettings.peakFreq,
+//                                                                              chainSettings.peakQuality,
+//                                                                              juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
+//
+//    *leftChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
+//    *rightChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
     
     auto cutCoefficients = juce::dsp::FilterDesign<float>::designIIRHighpassHighOrderButterworthMethod(chainSettings.lowCutFreq,
                                                                                                        sampleRate,
@@ -355,7 +357,7 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     
 //    *leftChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
 //    *rightChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
-//    
+//
 //    updateCoefficients(leftChain.get<ChainPositions::Peak>().coefficients, peakCoeffients);
 //    updateCoefficients(rightChain.get<ChainPositions::Peak>().coefficients, peakCoeffients);
      
