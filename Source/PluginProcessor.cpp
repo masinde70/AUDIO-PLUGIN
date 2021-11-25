@@ -353,9 +353,12 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     
     
     
-    *leftChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
-    *rightChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
-
+//    *leftChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
+//    *rightChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
+//    
+//    updateCoefficients(leftChain.get<ChainPositions::Peak>().coefficients, peakCoeffients);
+//    updateCoefficients(rightChain.get<ChainPositions::Peak>().coefficients, peakCoeffients);
+     
     juce::dsp::AudioBlock<float> block(buffer);
     
     auto leftBlock = block.getSingleChannelBlock(0);
@@ -413,9 +416,19 @@ void SimpleEQAudioProcessor::updatePeakFilter(const ChainSettings &chainSettings
                                                                               chainSettings.peakQuality,
                                                                               juce::Decibels::decibelsToGain(chainSettings.peakGainInDecibels));
     
-    *leftChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
-    *rightChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
+//    *leftChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
+//    *rightChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
+    
+    updateCoefficients(leftChain.get<ChainPositions::Peak>().coefficients, peakCoeffients);
+    updateCoefficients(rightChain.get<ChainPositions::Peak>().coefficients, peakCoeffients);
 }
+
+void SimpleEQAudioProcessor::updateCoefficients(Coefficients &old, const Coefficients &replacements){
+    
+    *old = *replacements;
+    
+}
+
 juce::AudioProcessorValueTreeState::ParameterLayout
 SimpleEQAudioProcessor::createParameterLayout()
 {
