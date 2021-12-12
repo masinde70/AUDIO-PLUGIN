@@ -330,12 +330,12 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
         case Slope_48:
             *rightLowCut.template get<0>().coefficients = *cutCoefficients[0];
             rightLowCut.template setBypassed<0>(false);
-            *rightLowCut.get<1>().coefficients = *cutCoefficients[1];
-            rightLowCut.setBypassed<1>(false);
-            *rightLowCut.get<2>().coefficients = *cutCoefficients[2];
-            rightLowCut.setBypassed<2>(false);
-            *rightLowCut.get<3>().coefficients = *cutCoefficients[3];
-            rightLowCut.setBypassed<3>(false);
+            *rightLowCut.template get<1>().coefficients = *cutCoefficients[1];
+            rightLowCut.template setBypassed<1>(false);
+            *rightLowCut.template get<2>().coefficients = *cutCoefficients[2];
+            rightLowCut.template setBypassed<2>(false);
+            *rightLowCut.template get<3>().coefficients = *cutCoefficients[3];
+            rightLowCut.template setBypassed<3>(false);
             break;
         
     }
