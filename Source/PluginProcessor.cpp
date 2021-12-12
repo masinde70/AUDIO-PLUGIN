@@ -1,8 +1,6 @@
 /*
   ==============================================================================
-
     This file contains the basic framework code for a JUCE plugin processor.
-
   ==============================================================================
 */
 
@@ -93,7 +91,7 @@ void SimpleEQAudioProcessor::changeProgramName (int index, const juce::String& n
 //==============================================================================
 void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-  // Use this method as the place to do any pre-playback
+    // Use this method as the place to do any pre-playback
     // initialisation that you need..
     
     juce::dsp::ProcessSpec spec;
@@ -116,7 +114,7 @@ void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
     
     spec.numChannels = getTotalNumOutputChannels();
     osc.prepare(spec);
-    osc.setFrequency(440); 
+    osc.setFrequency(440);
 }
 
 void SimpleEQAudioProcessor::releaseResources()
@@ -136,8 +134,8 @@ bool SimpleEQAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts)
     // In this template code we only support mono or stereo.
     // Some plugin hosts, such as certain GarageBand versions, will only
     // load plugins that support stereo bus layouts.
-    if (layouts.getMainOutputChannelSet() != juce::AudioChannelSet::mono()
-     && layouts.getMainOutputChannelSet() != juce::AudioChannelSet::stereo())
+    if (//layouts.getMainOutputChannelSet() != juce::AudioChannelSet::stereo()
+        layouts.getMainOutputChannelSet() != juce::AudioChannelSet::stereo())
         return false;
 
     // This checks if the input layout matches the output layout
@@ -165,13 +163,21 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     // this code if your algorithm always overwrites all the output channels.
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
-    
-    
+
     updateFilters();
     
     juce::dsp::AudioBlock<float> block(buffer);
-   
-
+    
+//    buffer.clear();
+//
+//    for( int i = 0; i < buffer.getNumSamples(); ++i )
+//    {
+//        buffer.setSample(0, i, osc.processSample(0));
+//    }
+//
+//    juce::dsp::ProcessContextReplacing<float> stereoContext(block);
+//    osc.process(stereoContext);
+    
     auto leftBlock = block.getSingleChannelBlock(0);
     auto rightBlock = block.getSingleChannelBlock(1);
     
@@ -183,8 +189,9 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     
     leftChannelFifo.update(buffer);
     rightChannelFifo.update(buffer);
- 
+    
 }
+
 //==============================================================================
 bool SimpleEQAudioProcessor::hasEditor() const
 {
@@ -196,12 +203,14 @@ juce::AudioProcessorEditor* SimpleEQAudioProcessor::createEditor()
     return new SimpleEQAudioProcessorEditor (*this);
 //    return new juce::GenericAudioProcessorEditor(*this);
 }
+
 //==============================================================================
 void SimpleEQAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+    
     juce::MemoryOutputStream mos(destData, true);
     apvts.state.writeToStream(mos);
 }
@@ -210,7 +219,7 @@ void SimpleEQAudioProcessor::setStateInformation (const void* data, int sizeInBy
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
-  auto tree = juce::ValueTree::readFromData(data, sizeInBytes);
+    auto tree = juce::ValueTree::readFromData(data, sizeInBytes);
     if( tree.isValid() )
     {
         apvts.replaceState(tree);
@@ -236,6 +245,7 @@ ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts)
     
     return settings;
 }
+
 Coefficients makePeakFilter(const ChainSettings& chainSettings, double sampleRate)
 {
     return juce::dsp::IIR::Coefficients<float>::makePeakFilter(sampleRate,
@@ -296,10 +306,8 @@ void SimpleEQAudioProcessor::updateFilters()
     updateHighCutFilters(chainSettings);
 }
 
-juce::AudioProcessorValueTreeState::ParameterLayout
-SimpleEQAudioProcessor::createParameterLayout()
+juce::AudioProcessorValueTreeState::ParameterLayout SimpleEQAudioProcessor::createParameterLayout()
 {
-    
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
     
     layout.add(std::make_unique<juce::AudioParameterFloat>("LowCut Freq",
@@ -345,7 +353,6 @@ SimpleEQAudioProcessor::createParameterLayout()
     layout.add(std::make_unique<juce::AudioParameterBool>("Analyzer Enabled", "Analyzer Enabled", true));
     
     return layout;
-        
 }
 
 //==============================================================================
