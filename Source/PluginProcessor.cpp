@@ -167,61 +167,11 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
         buffer.clear (i, 0, buffer.getNumSamples());
     
     
-  
-
-
-    auto& rightLowCut = rightChain.get<ChainPositions::LowCut>();
+    updateFilters();
     
-    rightLowCut.template setBypassed<0>(true);
-    rightLowCut.template setBypassed<1>(true);
-    rightLowCut.template setBypassed<2>(true);
-    rightLowCut.template setBypassed<3>(true);
-    
-    switch (chainSettings.lowCutSlope) {
-        case Slope_12:
-            *rightLowCut.template get<0>().coefficients = *cutCoefficients[0];
-            rightLowCut.template setBypassed<0>(false);
-            break;
-            
-        case Slope_24:
-            *rightLowCut.template get<0>().coefficients = *cutCoefficients[0];
-            rightLowCut.template setBypassed<0>(false);
-            *rightLowCut.template get<1>().coefficients = *cutCoefficients[1];
-            rightLowCut.template setBypassed<1>(false);
-            break;
-        
-        case Slope_36:
-            *rightLowCut.template get<0>().coefficients = *cutCoefficients[0];
-            rightLowCut.template setBypassed<0>(false);
-            *rightLowCut.template get<1>().coefficients = *cutCoefficients[1];
-            rightLowCut.template setBypassed<2>(false);
-            *rightLowCut.template get<2>().coefficients = *cutCoefficients[2];
-            rightLowCut.template setBypassed<2>(false);
-            break;
-        
-        case Slope_48:
-            *rightLowCut.template get<0>().coefficients = *cutCoefficients[0];
-            rightLowCut.template setBypassed<0>(false);
-            *rightLowCut.template get<1>().coefficients = *cutCoefficients[1];
-            rightLowCut.template setBypassed<1>(false);
-            *rightLowCut.template get<2>().coefficients = *cutCoefficients[2];
-            rightLowCut.template setBypassed<2>(false);
-            *rightLowCut.template get<3>().coefficients = *cutCoefficients[3];
-            rightLowCut.template setBypassed<3>(false);
-            break;
-        
-    }
-    
-    
-    
-//    *leftChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
-//    *rightChain.get<ChainPositions::Peak>().coefficients = *peakCoeffients;
-//
-//    updateCoefficients(leftChain.get<ChainPositions::Peak>().coefficients, peakCoeffients);
-//    updateCoefficients(rightChain.get<ChainPositions::Peak>().coefficients, peakCoeffients);
-     
     juce::dsp::AudioBlock<float> block(buffer);
-    
+   
+
     auto leftBlock = block.getSingleChannelBlock(0);
     auto rightBlock = block.getSingleChannelBlock(1);
     
@@ -231,18 +181,9 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     leftChain.process(leftContext);
     rightChain.process(rightContext);
     
-}
-
-//==============================================================================
-bool SimpleEQAudioProcessor::hasEditor() const
-{
-    return true; // (change this to false if you choose to not supply an editor)
-}
-
-juce::AudioProcessorEditor* SimpleEQAudioProcessor::createEditor()
-{
-    //return new SimpleEQAudioProcessorEditor (*this);
-    return new juce::GenericAudioProcessorEditor(*this);
+    leftChannelFifo.update(buffer);
+    rightChannelFifo.update(buffer);
+ 
 }
 
 //==============================================================================
