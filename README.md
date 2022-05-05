@@ -9,4 +9,3 @@
  
  ![](Images/plugin.jpeg)
  
- [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=masinde70)](https://github.com/masinde70/github-readme-stats)
